@@ -1,0 +1,31 @@
+{extends file="../../templates/main.html"}
+
+{block name=content}
+
+<form action="{$app_root}/app/security/login.php" method="post" class="login-content pure-form pure-form-stacked">
+    <fieldset class="login-fieldset">
+        <label for="id_login">Login: </label>
+        <input id="id_login" type="text" name="login" value="{$form['login']}">
+        
+        <label for="id_pass">Hasło: </label>
+        <input id="id_pass" type="password" name="pass">
+    </fieldset>
+    <input type="submit" value="Zaloguj" class="pure-button pure-button-primary">
+</form>
+
+{* Wyświetlenie listy błędów logowania, jeśli istnieją *}
+{if isset($messages)}
+    {if count($messages) > 0} 
+        <div class="login-messages">
+            <h4>Wystąpiły błędy:</h4>
+            <ol class="err">
+            {foreach $messages as $msg}
+                {strip}
+                    <li>{$msg}</li>
+                {/strip}
+            {/foreach}
+            </ol>
+        </div>
+    {/if}
+{/if}
+{/block}
